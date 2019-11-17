@@ -1,0 +1,63 @@
+<div class="card">
+        <div class="card-header">
+            <div class="row">
+                <div class="col">
+                    <h3> List of Subjects <button class="btn btn-lg btn-primary" (click)="openAdd(contentAdd)"
+                            style="float: right;"><i class="fa fa-plus" title="Add Subject"></i></button></h3>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <ngx-datatable class="material striped border" [rows]="subjects" [columns]="columns" [columnMode]="'force'"
+                [headerHeight]="50" [footerHeight]="50" rowHeight="auto" [externalPaging]="true" [count]="page.totalRows"
+                [offset]="page.pageNumber" [limit]="page.pageSize" (page)="loadSubjects($event)">
+                <ngx-datatable-column name="Id">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                      {{row.id}}
+                    </ng-template>
+                  </ngx-datatable-column>
+                <ngx-datatable-column name="Subjectname">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                      {{row.subjectname}}
+                    </ng-template>
+                  </ngx-datatable-column>
+                <ngx-datatable-column [width]="40" name="Option">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        <button type="button" class="btn btn-primary pointer" title="Edit subject" (click)="openEdit(row.id)"><i
+                                class="fa fa-edit fa-lg"></i></button>
+                    </ng-template>
+                </ngx-datatable-column>
+            </ngx-datatable>
+        </div>
+    </div>
+    
+    <div bsModal #editModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-child-name">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 id="dialog-child-name" class="modal-title pull-left">{{action}} Student</h4>
+                    <button type="button" class="close pull-right" aria-label="Close" (click)="hideModal()">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form [formGroup]="form" novalidate>
+                        <app-form-input ngDefaultControl [label]="'Subjectname'" [id]="'subjectname'"
+                            [formControl]="form.controls['subjectname']" [(ngModel)]="subject.subjectname"
+                            [placeholder]="'Enter Subject name'" [requiredValidation]="true"
+                            [customValidation]="form.controls['subjectname'].errors?.minlength || form.controls['subjectname'].errors?.maxlength"
+                            [customValidationMessage]="'Subjectname from 2 to 100 characters.'"></app-form-input>
+                        <app-form-input ngDefaultControl [label]="'Level'" [id]="'level'"
+                            [formControl]="form.controls['level']" [(ngModel)]="subject.levels"
+                            [placeholder]="'Enter Level'" [requiredValidation]="true"
+                            [customValidation]="form.controls['level'].errors?.minlength || form.controls['level'].errors?.maxlength"
+                            [customValidationMessage]="'Level from 2 to 100 characters.'"></app-form-input>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-dark"
+                                (click)="save()">Save</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
