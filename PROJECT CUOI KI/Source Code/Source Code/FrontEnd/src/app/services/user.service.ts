@@ -46,4 +46,5 @@ export class UserService {
       return this.apiService.put<RootObject<User>>(`${this.apiService.apiUrl.users.home}/${user.id}`, user);
     }
   }
+  
 }

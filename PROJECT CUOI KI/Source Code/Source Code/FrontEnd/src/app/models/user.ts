@@ -1,6 +1,7 @@
 import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
 
 export interface User {
+    token: User;
     id: number;
     username: string;
     password: string;

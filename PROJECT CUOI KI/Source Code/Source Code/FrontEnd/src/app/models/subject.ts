@@ -5,3 +5,4 @@ export class Subjects {
     parentSub: number;
     classid: number;
 }
+

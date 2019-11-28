@@ -37,4 +37,27 @@ export class LoginComponent {
       }
     });
   }
+  onLoginClick= function () {
+        this.router.navigateByUrl('/dashboard');
+        console.log("ádadasdsadsad")
+  };
+  forgotPasswordClick = function () {
+        this.router.negateByUrl('/')
+  };
+  registerClick = function () {
+        this.router.navigateByUrl('/register');
+  };
+ check= function (form)/*function to check userid & password*/
+  {
+ /*the following code checkes whether the entered userid and password are matching*/
+ if(form.userid.value == "admin" && form.pswrd.value == "123")
+  {
+    this.router.navigateByUrl('/dashboard');/*opens the target page while Id & password matches*/
+  }
+ else
+ {
+   alert("Error Password or Username")/*displays error message*/
+  }
+}
+  
 }

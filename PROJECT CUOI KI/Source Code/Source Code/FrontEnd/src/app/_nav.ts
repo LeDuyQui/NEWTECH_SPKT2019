@@ -53,6 +53,7 @@ export const navItems: NavData[] = [
         url: '/classes',
         icon: 'icon-user'
       },
+      
     ]
   },
 ];
